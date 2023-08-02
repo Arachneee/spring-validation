@@ -9,6 +9,7 @@ import hello.itemservice.web.validation.form.ItemUpdateForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -109,12 +110,14 @@ public class ValidationItemControllerV4 {
 
         //성공로직
 
-        Item item = new Item();
-        item.setItemName(form.getItemName());
-        item.setPrice(form.getPrice());
-        item.setQuantity(form.getQuantity());
+        // Item item = (Item) form;
 
-        Item savedItem = itemRepository.save(item);
+        // Item item = new Item();
+        // item.setItemName(form.getItemName());
+        // item.setPrice(form.getPrice());
+        // item.setQuantity(form.getQuantity());
+
+        Item savedItem = itemRepository.save(form);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
         return "redirect:/validation/v4/items/{itemId}";
@@ -180,12 +183,14 @@ public class ValidationItemControllerV4 {
             return "validation/v4/editForm";
         }
 
-        Item item = new Item();
-        item.setItemName(form.getItemName());
-        item.setPrice(form.getPrice());
-        item.setQuantity(form.getQuantity());
+        // Item item = (Item) form;
 
-        itemRepository.update(itemId, item);
+        // Item item = new Item();
+        // item.setItemName(form.getItemName());
+        // item.setPrice(form.getPrice());
+        // item.setQuantity(form.getQuantity());
+
+        itemRepository.update(itemId, form);
         return "redirect:/validation/v4/items/{itemId}";
     }
 

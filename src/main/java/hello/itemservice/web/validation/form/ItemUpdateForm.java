@@ -1,5 +1,6 @@
 package hello.itemservice.web.validation.form;
 
+import hello.itemservice.domain.item.Item;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class ItemUpdateForm {
+public class ItemUpdateForm extends Item {
 
     @NotNull
     private Long id;
